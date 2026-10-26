@@ -70,10 +70,65 @@
     font-family: var(--font-body);
     font-size: 1rem;
     font-weight: 500;
+    border: none;
+    cursor: pointer;
     transition: background 0.2s;
 }
 
 .landing-hero-btn:hover { background: #169a6e; }
+
+/* How-it-works modal                                                  */
+
+.landing-modal {
+    width: calc(100% - 2rem);
+    max-width: 860px;
+    padding: 0;
+    border: none;
+    border-radius: 16px;
+    background: #111;
+    color: #fff;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.landing-modal::backdrop { background: rgba(17, 17, 17, 0.7); }
+
+.landing-modal-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.75rem 0.75rem 0;
+}
+
+.landing-modal-close {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.landing-modal-close:hover { background: rgba(255, 255, 255, 0.3); }
+
+.landing-modal-body { padding: 0.75rem 1.25rem 1.25rem; }
+
+.landing-modal-video {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.landing-modal-video iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
 
 /* App preview card                                                    */
 

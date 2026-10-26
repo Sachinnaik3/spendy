@@ -19,7 +19,7 @@
     </p>
     <div class="landing-hero-actions">
         <a href="{{ url_for('register') }}" class="landing-hero-btn">Create free account</a>
-        <a href="#features" class="landing-hero-btn">See how it works</a>
+        <button type="button" class="landing-hero-btn" data-modal-open>See how it works</button>
     </div>
 
     <div class="landing-app">
@@ -96,4 +96,42 @@
     </div>
 </section>
 
+<dialog class="landing-modal" id="how-it-works">
+    <div class="landing-modal-header">
+        <button type="button" class="landing-modal-close" data-modal-close aria-label="Close">×</button>
+    </div>
+    <div class="landing-modal-body">
+        <div class="landing-modal-video">
+            <iframe data-src="https://www.youtube.com/embed/jNQXAC9IVRw" title="How Spendly works" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+</dialog>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    (function () {
+        var modal = document.getElementById('how-it-works');
+        var openBtn = document.querySelector('[data-modal-open]');
+        var closeBtn = modal.querySelector('[data-modal-close]');
+        var frame = modal.querySelector('iframe');
+
+        openBtn.addEventListener('click', function () {
+            frame.src = frame.getAttribute('data-src') + '?autoplay=1';
+            modal.showModal();
+        });
+
+        closeBtn.addEventListener('click', function () { modal.close(); });
+
+        modal.addEventListener('click', function (e) {
+            if (e.target === modal) modal.close();
+        });
+
+        // Runs on every close (button, backdrop, or Escape) and stops playback
+        modal.addEventListener('close', function () {
+            frame.src = 'about:blank';
+        });
+    })();
+</script>
 {% endblock %}
