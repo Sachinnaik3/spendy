@@ -70,6 +70,31 @@ def get_user_by_email(email):
         conn.close()
 
 
+def get_user_by_id(user_id):
+    conn = get_db()
+    try:
+        return conn.execute(
+            "SELECT id, name, email, created_at FROM users WHERE id = ?",
+            (user_id,),
+        ).fetchone()
+    finally:
+        conn.close()
+
+
+def get_expense_summary(user_id):
+    conn = get_db()
+    try:
+        return conn.execute(
+            "SELECT COUNT(*) AS expense_count, "
+            "COALESCE(SUM(amount), 0) AS total, "
+            "COUNT(DISTINCT category) AS category_count "
+            "FROM expenses WHERE user_id = ?",
+            (user_id,),
+        ).fetchone()
+    finally:
+        conn.close()
+
+
 def seed_db():
     conn = get_db()
     try:
